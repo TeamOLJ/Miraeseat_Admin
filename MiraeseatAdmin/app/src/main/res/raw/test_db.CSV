@@ -1,0 +1,8 @@
+공연장코드,공연시설명,공연장명,공연장이미지,객석배치도,배치간격정보,검색횟수
+FC11111,첫번째공연시설,첫번째공연장,,,,0
+FC22222,두번째공연시설,리사이틀홀,,,,0
+FC33333,세번째공연시설,,,,,0
+FC44444,네번째공연시설,,,,,0
+FC66666,다섯번째공연시설,,,https://firebasestorage.googleapis.com/v0/b/capstone2020-e540d.appspot.com/o/theater_seat_plan%2Fcharlotte.jpg?alt=media&token=80453ebf-d7c5-4274-83c8-beba34bc5caa,,0
+FC77777,일곱번째공연시설,소공연장,,,,0
+FC-LAST-LINE,LAST,,,,,0

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:elevation="1dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+
+            <TextView
+                android:id="@+id/viewTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="타이틀"
+                android:layout_gravity="center"
+                android:textAppearance="@style/Base.TextAppearance.Widget.AppCompat.Toolbar.Title" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="30dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+
+            <com.capstondesign.miraeadmin.CustomButton
+                android:id="@+id/goto_upload"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                app:bg="@color/main_color"
+                app:symbol="@drawable/upload64"
+                app:text="DB 업로드"
+                app:textColor="@color/appbar_color" />
+
+            <com.capstondesign.miraeadmin.CustomButton
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                app:bg="@color/sub_color"
+                app:symbol="@drawable/xmark64"
+                app:text="기능 없음"
+                app:textColor="@color/appbar_color"
+                android:clickable="false" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2" >
+
+            <com.capstondesign.miraeadmin.CustomButton
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                app:bg="@color/sub_color"
+                app:symbol="@drawable/xmark64"
+                app:text="기능 없음"
+                app:textColor="@color/appbar_color"
+                android:clickable="false" />
+
+            <com.capstondesign.miraeadmin.CustomButton
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                app:bg="@color/sub_color"
+                app:symbol="@drawable/xmark64"
+                app:text="기능 없음"
+                app:textColor="@color/appbar_color"
+                android:clickable="false" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <Button
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_span="2"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:text="기능없음" />
+        </TableRow>
+
+    </TableLayout>
+
+
+</LinearLayout>

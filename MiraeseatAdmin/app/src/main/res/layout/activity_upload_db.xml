@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:elevation="1dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+
+            <TextView
+                android:id="@+id/viewTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="타이틀"
+                android:textAppearance="@style/Base.TextAppearance.Widget.AppCompat.Toolbar.Title" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <Button
+        android:id="@+id/btnReadDB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="30dp"
+        android:background="@color/main_color"
+        android:text="데이터 읽어들이기"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnUpload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="40dp"
+        android:layout_marginHorizontal="30dp"
+        android:background="@color/main_light"
+        android:text="파이어베이스 업로드"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvLogPreview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="20dp"
+        android:padding="10dp"
+        android:background="@color/sub_color"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/tvResultLogs"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text=""
+        android:gravity="bottom"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="30dp"
+        android:padding="10dp"
+        android:background="@color/sub_color"
+        android:textColor="#000000"
+        android:scrollbars="vertical|horizontal" />
+
+</LinearLayout>
