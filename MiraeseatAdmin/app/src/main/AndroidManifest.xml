@@ -23,6 +23,8 @@
         </activity>
 
         <activity android:name=".UploadDBActivity"></activity>
+
+        <activity android:name=".HotfixTestActivity"></activity>
     </application>
 
 </manifest>

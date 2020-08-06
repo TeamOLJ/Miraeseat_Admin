@@ -9,4 +9,7 @@
     <color name="sub_color">#D5D5D5</color>
 
     <color name="appbar_color">#353535</color>
+
+    <color name="db_upload_color">#5FC4BD</color>
+    <color name="hotfix_color">#F56186</color>
 </resources>

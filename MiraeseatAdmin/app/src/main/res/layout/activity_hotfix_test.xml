@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:elevation="1dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+
+            <TextView
+                android:id="@+id/viewTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="타이틀"
+                android:textAppearance="@style/Base.TextAppearance.Widget.AppCompat.Toolbar.Title" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <Button
+        android:id="@+id/btnReadTC"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="30dp"
+        android:background="@color/main_color"
+        android:text="이용약관 확인"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvTermCondition"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:text=""
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="20dp"
+        android:padding="10dp"
+        android:background="@color/sub_color"
+        android:textColor="#000000"
+        android:scrollbars="vertical" />
+
+    <Button
+        android:id="@+id/btnReadPI"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="30dp"
+        android:background="@color/main_light"
+        android:text="개인정보수집동의 확인"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvPersonalInfo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:text=""
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="20dp"
+        android:padding="10dp"
+        android:background="@color/sub_color"
+        android:textColor="#000000"
+        android:scrollbars="vertical" />
+
+</LinearLayout>
