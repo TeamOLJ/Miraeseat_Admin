@@ -97,7 +97,7 @@ public class UploadDBActivity extends AppCompatActivity {
     }
 
     private void readTheaterData() {
-        InputStream is = getResources().openRawResource(R.raw.theater_db);
+        InputStream is = getResources().openRawResource(R.raw.theaters_db);
         //InputStream is = getResources().openRawResource(R.raw.test_db);
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(is, Charset.forName("UTF-8"))
@@ -115,27 +115,22 @@ public class UploadDBActivity extends AppCompatActivity {
 
                 // read the data
                 TheaterSample sample = new TheaterSample();
-                // 공연장코드,공연시설명,공연장명,공연장이미지,객석배치도,배치간격정보,검색횟수
+                // 공연시설코드,공연장코드,공연시설명,공연장명,공연장이미지,객석배치도유무,검색횟수
                 sample.setTheaterCode(tokens[0]);
-                sample.setTheaterName(tokens[1]);
-                sample.setHallName(tokens[2]);
-
-                if(tokens[3].equals("")) {
-                    sample.setTheaterImage(null);
-                } else {
-                    sample.setTheaterImage(tokens[3]);
-                }
+                sample.setHallCode(tokens[1]);
+                sample.setTheaterName(tokens[2]);
+                sample.setHallName(tokens[3]);
 
                 if(tokens[4].equals("")) {
-                    sample.setSeatplan(null);
+                    sample.setTheaterImage(null);
                 } else {
-                    sample.setSeatplan(tokens[4]);
+                    sample.setTheaterImage(tokens[4]);
                 }
 
-                if(tokens[5].equals("")) {
-                    sample.setArrangedInfo(null);
+                if(tokens[5].equals("true")) {
+                    sample.setSeatplan(true);
                 } else {
-                    sample.setArrangedInfo(tokens[5]);
+                    sample.setSeatplan(false);
                 }
 
                 sample.setSearchedNum(Integer.parseInt(tokens[6]));

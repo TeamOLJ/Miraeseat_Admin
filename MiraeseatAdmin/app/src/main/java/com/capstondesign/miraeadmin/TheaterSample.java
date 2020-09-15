@@ -1,13 +1,13 @@
 package com.capstondesign.miraeadmin;
 
 class TheaterSample {
-    // 공연장코드,공연시설명,공연장명,공연장이미지,객석배치도,배치간격정보,검색횟수
+    // 공연시설코드,공연장코드,공연시설명,공연장명,공연장이미지,객석배치도유무,검색횟수
     private String theaterCode;
+    private String hallCode;
     private String theaterName; // 공연시설
     private String hallName;    // 공연장
     private String theaterImage;
-    private String seatplan;
-    private String arrangedInfo;
+    private boolean isSeatplan;
     private int searchedNum;
 
     TheaterSample() {
@@ -19,6 +19,14 @@ class TheaterSample {
 
     public void setTheaterCode(String theaterCode) {
         this.theaterCode = theaterCode;
+    }
+
+    public String getHallCode() {
+        return hallCode;
+    }
+
+    public void setHallCode(String hallCode) {
+        this.hallCode = hallCode;
     }
 
     public String getTheaterName() {
@@ -45,20 +53,12 @@ class TheaterSample {
         this.theaterImage = theaterImage;
     }
 
-    public String getSeatplan() {
-        return seatplan;
+    public boolean isSeatplan() {
+        return isSeatplan;
     }
 
-    public void setSeatplan(String seatplan) {
-        this.seatplan = seatplan;
-    }
-
-    public String getArrangedInfo() {
-        return arrangedInfo;
-    }
-
-    public void setArrangedInfo(String arrangedInfo) {
-        this.arrangedInfo = arrangedInfo;
+    public void setSeatplan(boolean seatplan) {
+        isSeatplan = seatplan;
     }
 
     public int getSearchedNum() {
@@ -71,6 +71,6 @@ class TheaterSample {
 
     @Override
     public String toString() {
-        return "TheaterSample {" +  theaterCode + ',' + theaterName + ',' + hallName + ',' + theaterImage + ',' + seatplan + ',' + arrangedInfo + ',' + searchedNum + "}";
+        return "TheaterSample {" +  theaterCode + ',' + hallCode + ',' + theaterName + ',' + hallName + ',' + theaterImage + ',' + isSeatplan + ',' + searchedNum + "}";
     }
 }
