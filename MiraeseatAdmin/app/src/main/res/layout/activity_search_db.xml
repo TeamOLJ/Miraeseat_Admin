@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:elevation="1dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+
+            <TextView
+                android:id="@+id/viewTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="타이틀"
+                android:textAppearance="@style/Base.TextAppearance.Widget.AppCompat.Toolbar.Title" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="검색할 컬렉션"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="30dp"
+        android:textAppearance="?android:attr/textAppearanceSearchResultSubtitle"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginHorizontal="30dp"
+        android:background="@null" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="검색할 항목"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="30dp"
+        android:textAppearance="?android:attr/textAppearanceSearchResultSubtitle"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginHorizontal="30dp"
+        android:background="@null" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginHorizontal="30dp" >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textlayoutKeyword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            app:hintEnabled="false" >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editKeyword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="20"
+                android:hint="검색 키워드"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnSearchDB"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:includeFontPadding="false"
+            android:text="검색" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvResultSummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="20dp"
+        android:padding="10dp"
+        android:background="@color/sub_color"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/tvResultDocuments"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text=""
+        android:gravity="bottom"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="30dp"
+        android:padding="10dp"
+        android:background="@color/sub_color"
+        android:textColor="#000000"
+        android:scrollbars="vertical|horizontal" />
+
+</LinearLayout>

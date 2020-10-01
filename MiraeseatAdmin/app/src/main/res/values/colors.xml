@@ -12,4 +12,6 @@
 
     <color name="db_upload_color">#5FC4BD</color>
     <color name="hotfix_color">#F56186</color>
+    <color name="db_search_color">#6799FF</color>
+    <color name="inquiry_report_color">#FFE08C</color>
 </resources>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="collections">
+        <item>UserInfo</item>
+        <item>OfficialNotice</item>
+        <item>SeatReview</item>
+        <item>TheaterInfo</item>
+        <item>UserInquiry</item>
+        <item>UserReport</item>
+    </string-array>
+
+    <string-array name="userInfoList">
+        <item>email</item>
+        <item>nick</item>
+    </string-array>
+
+    <string-array name="officialNoticeList">
+        <item>noticeTitle</item>
+        <item>noticeDate</item>
+    </string-array>
+
+    <string-array name="seatReviewList">
+        <item>theaterName</item>
+        <item>theaterName|seatNum</item>
+        <item>reviewDate</item>
+        <item>ownerUser</item>
+    </string-array>
+
+    <string-array name="theaterInfoList">
+        <item>theaterName</item>
+        <item>hallName</item>
+        <item>theaterCode</item>
+        <item>theaterCode|hallCode</item>
+    </string-array>
+
+    <string-array name="userInquiryList">
+        <item>inquiryTitle</item>
+        <item>userName</item>
+        <item>userEmail</item>
+    </string-array>
+
+    <string-array name="userReportList">
+        <item>userEmail</item>
+        <item>targetReview</item>
+    </string-array>
+
+</resources>

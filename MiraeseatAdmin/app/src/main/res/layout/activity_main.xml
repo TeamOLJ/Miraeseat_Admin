@@ -56,13 +56,14 @@
                 app:textColor="@color/appbar_color" />
 
             <com.capstondesign.miraeadmin.CustomButton
+                android:id="@+id/goto_search"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="10dp"
-                app:bg="@color/sub_color"
-                app:symbol="@drawable/xmark64"
-                app:text="기능 없음"
+                app:bg="@color/db_search_color"
+                app:symbol="@drawable/search64"
+                app:text="DB 검색"
                 app:textColor="@color/appbar_color"
                 android:clickable="false" />
 
@@ -85,13 +86,14 @@
                 app:textColor="@color/appbar_color" />
 
             <com.capstondesign.miraeadmin.CustomButton
+                android:id="@+id/goto_inquiry_report"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="10dp"
-                app:bg="@color/sub_color"
-                app:symbol="@drawable/xmark64"
-                app:text="기능 없음"
+                app:bg="@color/inquiry_report_color"
+                app:symbol="@drawable/report64"
+                app:text="문의/신고"
                 app:textColor="@color/appbar_color"
                 android:clickable="false" />
 
