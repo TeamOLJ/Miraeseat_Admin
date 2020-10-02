@@ -23,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
     BackPressCloseHandler backpress;
 
     CustomButton btnGotoUpload;
-    CustomButton btnGotoSearch;
     CustomButton btnGotoHotfix;
+    CustomButton btnGotoInquiry;
     CustomButton btnGotoReport;
 
     Button btnLogout;
@@ -47,9 +47,9 @@ public class MainActivity extends AppCompatActivity {
         backpress = new BackPressCloseHandler(this);
 
         btnGotoUpload = findViewById(R.id.goto_upload);
-        btnGotoSearch = findViewById(R.id.goto_search);
         btnGotoHotfix = findViewById(R.id.goto_hotfix);
-        btnGotoReport = findViewById(R.id.goto_inquiry_report);
+        btnGotoInquiry = findViewById(R.id.goto_inquiry);
+        btnGotoReport = findViewById(R.id.goto_report);
 
         btnLogout = findViewById(R.id.btnLogout);
 
@@ -57,14 +57,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), UploadDBActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        btnGotoSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SearchDBActivity.class);
                 startActivity(intent);
             }
         });
@@ -77,10 +69,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnGotoInquiry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), InquiryActivity.class);
+                startActivity(intent);
+            }
+        });
+
         btnGotoReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), InqReportActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ReportActivity.class);
                 startActivity(intent);
             }
         });

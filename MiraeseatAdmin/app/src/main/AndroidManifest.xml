@@ -10,7 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".LoginActivity">
+        <activity
+            android:name=".LoginActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,6 +27,10 @@
         <activity android:name=".UploadDBActivity"></activity>
 
         <activity android:name=".HotfixTestActivity"></activity>
+
+        <activity android:name=".InquiryActivity"></activity>
+
+        <activity android:name=".InquiryContext"></activity>
     </application>
 
 </manifest>

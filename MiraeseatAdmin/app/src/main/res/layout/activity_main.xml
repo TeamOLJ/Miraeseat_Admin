@@ -56,14 +56,14 @@
                 app:textColor="@color/appbar_color" />
 
             <com.capstondesign.miraeadmin.CustomButton
-                android:id="@+id/goto_search"
+                android:id="@+id/goto_hotfix"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="10dp"
-                app:bg="@color/db_search_color"
-                app:symbol="@drawable/search64"
-                app:text="DB 검색"
+                app:bg="@color/hotfix_color"
+                app:symbol="@drawable/testtube64"
+                app:text="Hotfix"
                 app:textColor="@color/appbar_color"
                 android:clickable="false" />
 
@@ -75,25 +75,25 @@
             android:layout_weight="3" >
 
             <com.capstondesign.miraeadmin.CustomButton
-                android:id="@+id/goto_hotfix"
+                android:id="@+id/goto_inquiry"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="10dp"
-                app:bg="@color/hotfix_color"
-                app:symbol="@drawable/testtube64"
-                app:text="Hotfix"
+                app:bg="@color/db_search_color"
+                app:symbol="@drawable/report64"
+                app:text="문의사항"
                 app:textColor="@color/appbar_color" />
 
             <com.capstondesign.miraeadmin.CustomButton
-                android:id="@+id/goto_inquiry_report"
+                android:id="@+id/goto_report"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="10dp"
                 app:bg="@color/inquiry_report_color"
-                app:symbol="@drawable/report64"
-                app:text="문의/신고"
+                app:symbol="@drawable/alert64"
+                app:text="신고접수"
                 app:textColor="@color/appbar_color"
                 android:clickable="false" />
 
