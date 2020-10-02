@@ -34,16 +34,16 @@
         android:layout_height="match_parent" >
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerInquiryList"
+            android:id="@+id/recyclerReportList"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
         <TextView
-            android:id="@+id/textNoInquiry"
+            android:id="@+id/textNoReport"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="불러올 신고가 없습니다."
+            android:text="불러올 문의가 없습니다."
             android:visibility="gone"/>
 
     </FrameLayout>

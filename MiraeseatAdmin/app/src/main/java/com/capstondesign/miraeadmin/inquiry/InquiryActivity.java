@@ -36,6 +36,8 @@ public class InquiryActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     InquiryAdapter adapter;
 
+    TextView textNoInquiry;
+
     Inquiry inquiry;
 
     private FirebaseFirestore db;
@@ -70,6 +72,8 @@ public class InquiryActivity extends AppCompatActivity {
         adapter = new InquiryAdapter();
         recyclerView.setAdapter(adapter);
 
+        textNoInquiry = (TextView)findViewById(R.id.textNoInquiry);
+
         adapter.setOnInquiryClickListener(new OnInquiryClickListener() {
             @Override
             public void onItemClick(InquiryAdapter.ViewHolder holder, View view, int position) {
@@ -83,11 +87,11 @@ public class InquiryActivity extends AppCompatActivity {
             }
         });
 
-        loadNoticeListData();
+        loadInquiryListData();
     }
 
     // 서버에서 DB 읽어오는 함수
-    public void loadNoticeListData() {
+    public void loadInquiryListData() {
 
         db = FirebaseFirestore.getInstance();
         final SimpleDateFormat convert_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -97,19 +101,30 @@ public class InquiryActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
-                    // DB를 읽는 데에 성공했으면,
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        // 각각의 쿼리 반환값을 dataSet에 추가
-                        // String documentID, String userName, String userEmail, String inquiryTitle, String inquiryContext, Boolean isChecked, Date inquiryTime
-                        inquiry = new Inquiry(document.getId(), document.getString("userName"), document.getString("userEmail"),
-                                                document.getString("inquiryTitle"), document.getString("inquiryContext"),
-                                                String.valueOf(document.getBoolean("isChecked")), convert_format.format(document.getDate("inquiryTime")));
-                        dataSet.add(inquiry);
-                    }
+                    QuerySnapshot querySnapshot = task.getResult();
 
-                    // 어댑터에 데이터 삽입
-                    adapter.setItems(dataSet);
-                    adapter.notifyDataSetChanged();
+                    if (querySnapshot.isEmpty()) {
+                        recyclerView.setVisibility(View.GONE);
+                        textNoInquiry.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        // DB를 읽는 데에 성공했으면,
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            // 각각의 쿼리 반환값을 dataSet에 추가
+                            // String documentID, String userName, String userEmail, String inquiryTitle, String inquiryContext, Boolean isChecked, Date inquiryTime
+                            inquiry = new Inquiry(document.getId(), document.getString("userName"), document.getString("userEmail"),
+                                    document.getString("inquiryTitle"), document.getString("inquiryContext"),
+                                    String.valueOf(document.getBoolean("isChecked")), convert_format.format(document.getDate("inquiryTime")));
+                            dataSet.add(inquiry);
+                        }
+
+                        // 어댑터에 데이터 삽입
+                        adapter.setItems(dataSet);
+                        adapter.notifyDataSetChanged();
+
+                        recyclerView.setVisibility(View.VISIBLE);
+                        textNoInquiry.setVisibility(View.GONE);
+                    }
                 } else {
                     Log.d(TAG, "Error getting documents: ", task.getException());
                 }

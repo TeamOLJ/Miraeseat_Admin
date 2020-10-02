@@ -31,6 +31,11 @@
         <activity android:name=".inquiry.InquiryActivity"></activity>
 
         <activity android:name=".inquiry.InquiryContext"></activity>
+
+        <activity android:name=".report.ReportActivity"></activity>
+
+        <activity android:name=".report.ReportContext"></activity>
+
     </application>
 
 </manifest>

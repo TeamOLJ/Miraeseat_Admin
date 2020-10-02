@@ -14,8 +14,6 @@ public class Inquiry implements Parcelable {
     private String isChecked;
     private String inquiryTime;
 
-    SimpleDateFormat convert_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
     public Inquiry() {}
 
     public Inquiry(String documentID, String userName, String userEmail, String inquiryTitle, String inquiryContext, String isChecked, String inquiryTime) {

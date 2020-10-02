@@ -95,7 +95,7 @@ public class InquiryAdapter extends RecyclerView.Adapter<InquiryAdapter.ViewHold
             textTitle.setText(item.getInquiryTitle());
             textDate.setText(item.getInquiryTime());
 
-            if(item.getIsChecked() == "true") {
+            if(item.getIsChecked().equals("true")) {
                 textTitle.setTextColor(Color.parseColor("#A6A6A6"));
             }
         }
