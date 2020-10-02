@@ -28,9 +28,9 @@
 
         <activity android:name=".HotfixTestActivity"></activity>
 
-        <activity android:name=".InquiryActivity"></activity>
+        <activity android:name=".inquiry.InquiryActivity"></activity>
 
-        <activity android:name=".InquiryContext"></activity>
+        <activity android:name=".inquiry.InquiryContext"></activity>
     </application>
 
 </manifest>

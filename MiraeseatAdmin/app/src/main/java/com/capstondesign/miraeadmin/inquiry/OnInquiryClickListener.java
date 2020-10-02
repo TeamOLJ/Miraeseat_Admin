@@ -1,4 +1,4 @@
-package com.capstondesign.miraeadmin;
+package com.capstondesign.miraeadmin.inquiry;
 
 import android.view.View;
 

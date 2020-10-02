@@ -1,4 +1,4 @@
-package com.capstondesign.miraeadmin;
+package com.capstondesign.miraeadmin.unused;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -9,6 +9,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.capstondesign.miraeadmin.R;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.FirebaseFirestore;
 

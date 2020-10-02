@@ -1,12 +1,9 @@
-package com.capstondesign.miraeadmin;
+package com.capstondesign.miraeadmin.inquiry;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.firebase.firestore.ServerTimestamp;
-
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class Inquiry implements Parcelable {
     private String documentID;

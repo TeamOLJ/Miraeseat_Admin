@@ -1,6 +1,7 @@
 package com.capstondesign.miraeadmin;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -72,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
             String givenPwd = inputPwd.getText().toString();
 
             isSaveEmailChecked = checkSaveEmail.isChecked();
+            ConnectivityManager conManager = (ConnectivityManager) LoginActivity.this.getSystemService(CONNECTIVITY_SERVICE);
 
             // 이메일 칸에 입력된 것이 없을 경우
             if(givenEmail.getBytes().length <= 0)
@@ -122,7 +124,11 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
             }
-
+            // 인터넷 연결 확인 먼저
+            else if(conManager.getActiveNetworkInfo() == null) {
+                reset();
+                Toast.makeText(getApplicationContext(),"인터넷 연결을 먼저 확인해주세요.",Toast.LENGTH_LONG).show();
+            }
             // 이메일과 비밀번호 모두 입력되어 있으면
             else
             {

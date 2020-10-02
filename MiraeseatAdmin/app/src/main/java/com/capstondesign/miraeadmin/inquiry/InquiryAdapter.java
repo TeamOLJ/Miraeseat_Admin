@@ -1,4 +1,4 @@
-package com.capstondesign.miraeadmin;
+package com.capstondesign.miraeadmin.inquiry;
 
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.capstondesign.miraeadmin.R;
 
 import java.util.ArrayList;
 

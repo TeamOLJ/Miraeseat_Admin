@@ -1,5 +1,6 @@
 package com.capstondesign.miraeadmin;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -151,12 +152,13 @@ public class UploadDBActivity extends AppCompatActivity {
     }
 
     private void uploadTheaterData() {
-        int size = TheaterSamples.size();
+        final int size = TheaterSamples.size();
         int i = 0;
 
         for(i = 0; i < size; i++) {
             final TheaterSample theaterItem = TheaterSamples.get(i);
             final String itemCode = theaterItem.getTheaterCode();
+            final int finalI = i;
             db.collection("TheaterInfo").add(theaterItem)
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
@@ -164,6 +166,10 @@ public class UploadDBActivity extends AppCompatActivity {
                             tvResultLogs.append(itemCode+" 업로드 성공\n");
                             succeed += 1;
                             tvLogPreview.setText("성공: "+succeed+"건, 실패: "+failed+"건");
+
+                            if(finalI ==size - 1) {
+                                showFinished();
+                            }
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -173,9 +179,26 @@ public class UploadDBActivity extends AppCompatActivity {
                             tvResultLogs.append("ERROR!! "+itemCode+" 업로드 실패\n");
                             failed += 1;
                             tvLogPreview.setText("성공: "+succeed+"건, 실패: "+failed+"건");
+
+                            if(finalI ==size - 1) {
+                                showFinished();
+                            }
                         }
                     });
         }
+    }
+
+    public void showFinished() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //builder.setTitle(null);
+        builder.setMessage("DB 업로드가 완료되었습니다.");
+
+        builder.setPositiveButton("확인", null);
+
+        builder.setCancelable(true);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     // 뒤로가기 버튼(홈버튼)을 누르면 창이 꺼지는 메소드
