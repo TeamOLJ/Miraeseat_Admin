@@ -98,6 +98,9 @@ public class InquiryAdapter extends RecyclerView.Adapter<InquiryAdapter.ViewHold
             if(item.getIsChecked().equals("true")) {
                 textTitle.setTextColor(Color.parseColor("#A6A6A6"));
             }
+            else {
+                textTitle.setTextColor(Color.parseColor("#000000"));
+            }
         }
     }
 }
