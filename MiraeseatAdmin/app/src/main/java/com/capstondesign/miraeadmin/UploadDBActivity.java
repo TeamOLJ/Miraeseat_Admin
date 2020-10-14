@@ -1,7 +1,11 @@
 package com.capstondesign.miraeadmin;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.MenuItem;
@@ -10,6 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -20,6 +25,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -29,6 +36,8 @@ import java.util.List;
 
 public class UploadDBActivity extends AppCompatActivity {
     private static final String TAG = "UploadDBActivity";
+
+    static final int PICKFILE_RESULT_CODE = 7777;
 
     Toolbar toolbar;
     TextView viewTitleText;
@@ -75,11 +84,7 @@ public class UploadDBActivity extends AppCompatActivity {
         btnReadDB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tvResultLogs.setText("");
-
-                TheaterSamples.clear();
-
-                readTheaterData();
+                getFile();
             }
         });
 
@@ -97,58 +102,10 @@ public class UploadDBActivity extends AppCompatActivity {
 
     }
 
-    private void readTheaterData() {
-        InputStream is = getResources().openRawResource(R.raw.theaters_db);
-        //InputStream is = getResources().openRawResource(R.raw.test_db);
-        BufferedReader reader = new BufferedReader(
-                new InputStreamReader(is, Charset.forName("UTF-8"))
-        );
-
-        String line = "";
-        try {
-            // Step over headers
-            reader.readLine();
-
-            // read data lines
-            while ((line = reader.readLine()) != null) {
-                // split by ','
-                String[] tokens = line.split(",");
-
-                // read the data
-                TheaterSample sample = new TheaterSample();
-                // 공연시설코드,공연장코드,공연시설명,공연장명,공연장이미지,객석배치도유무,검색횟수
-                sample.setTheaterCode(tokens[0]);
-                sample.setHallCode(tokens[1]);
-                sample.setTheaterName(tokens[2]);
-                sample.setHallName(tokens[3]);
-
-                if(tokens[4].equals("")) {
-                    sample.setTheaterImage(null);
-                } else {
-                    sample.setTheaterImage(tokens[4]);
-                }
-
-                if(tokens[5].equals("true")) {
-                    sample.setSeatplan(true);
-                } else {
-                    sample.setSeatplan(false);
-                }
-
-                sample.setSearchedNum(Integer.parseInt(tokens[6]));
-
-                TheaterSamples.add(sample);
-                tvResultLogs.append(sample+"\n");
-                Log.d("MyActivity", "Just created: "+sample);
-            }
-
-            tvResultLogs.append("데이터 읽어들이기에 성공했습니다.");
-
-        } catch (IOException e) {
-            Log.wtf(TAG, "Error reading data file on line " + line, e);
-            e.printStackTrace();
-
-            tvResultLogs.setText("ERROR! >> Error reading data file on line " + line);
-        }
+    private void getFile() {
+        Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
+        chooseFile.setType("text/*");
+        startActivityForResult(chooseFile, PICKFILE_RESULT_CODE);
     }
 
     private void uploadTheaterData() {
@@ -185,6 +142,70 @@ public class UploadDBActivity extends AppCompatActivity {
                             }
                         }
                     });
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == PICKFILE_RESULT_CODE && resultCode == Activity.RESULT_OK) {
+            if(data.getData() != null){
+                Uri uri = data.getData();
+                InputStream is = null;
+
+                String line = "";
+
+                try {
+                    is = getContentResolver().openInputStream(uri);
+                    BufferedReader reader = new BufferedReader(
+                            new InputStreamReader(is, Charset.forName("UTF-8"))
+                    );
+
+                    // Step over headers
+                    reader.readLine();
+
+                    // read data lines
+                    while ((line = reader.readLine()) != null) {
+                        // split by ','
+                        String[] tokens = line.split(",");
+
+                        // read the data
+                        TheaterSample sample = new TheaterSample();
+                        // 공연시설코드,공연장코드,공연시설명,공연장명,공연장이미지,객석배치도유무,검색횟수
+                        sample.setTheaterCode(tokens[0]);
+                        sample.setHallCode(tokens[1]);
+                        sample.setTheaterName(tokens[2]);
+                        sample.setHallName(tokens[3]);
+
+                        if(tokens[4].equals("")) {
+                            sample.setTheaterImage(null);
+                        } else {
+                            sample.setTheaterImage(tokens[4]);
+                        }
+
+                        if(tokens[5].equals("true")) {
+                            sample.setSeatplan(true);
+                        } else {
+                            sample.setSeatplan(false);
+                        }
+
+                        sample.setSearchedNum(Integer.parseInt(tokens[6]));
+
+                        TheaterSamples.add(sample);
+                        tvResultLogs.append(sample+"\n");
+                        Log.d("MyActivity", "Just created: "+sample);
+                    }
+
+                    tvResultLogs.append("데이터 읽어들이기에 성공했습니다.");
+
+                } catch (IOException e) {
+                    Log.wtf(TAG, "Error reading data file on line " + line, e);
+                    e.printStackTrace();
+
+                    tvResultLogs.setText("ERROR! >> Error reading data file on line " + line);
+                }
+            }
         }
     }
 
