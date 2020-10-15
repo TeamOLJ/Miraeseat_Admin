@@ -20,6 +20,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 public class HotfixTestActivity extends AppCompatActivity {
@@ -28,13 +30,10 @@ public class HotfixTestActivity extends AppCompatActivity {
     Toolbar toolbar;
     TextView viewTitleText;
 
-    Button btnReadTC;
-    Button btnReadPI;
-
-    TextView tvReadTC;
-    TextView tvReadPI;
-
     private FirebaseFirestore db;
+
+    String documentID;
+    SeatPlanInfo seatinfo;
 
     int totalWidth;
     int totalHeight;
@@ -44,8 +43,9 @@ public class HotfixTestActivity extends AppCompatActivity {
     int marginCol;
     int maxRow;
     int maxCol;
+
     ArrayList<Integer> floorRow;
-    Map<Integer, ArrayList<Integer>> rowStartEnd;
+    Map<String, ArrayList<Integer>> rowStartEnd;
     ArrayList<Integer> aisleSeat;
 
     @Override
@@ -65,67 +65,46 @@ public class HotfixTestActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        db.collection("SeatPlanInfo").document("FC000012-01").get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        documentID = "00TESTDOCUMENT";
+
+        totalWidth = 0;
+        totalHeight = 0;
+        marginLeft = 0;
+        marginTop = 0;
+        marginRow = 0;
+        marginCol = 0;
+        maxRow = 0;
+        maxCol = 0;
+
+        floorRow = new ArrayList<Integer>(Arrays.asList(0, 20, 32));
+        aisleSeat = new ArrayList<Integer>(Arrays.asList(14, 30));
+
+        rowStartEnd = new HashMap<>();
+
+        int[][] start_end_indexes = {{15, 30}, {11, 34}, {10, 35}, {9, 36}, {8, 37}, {7, 38}, {7, 38}, {6, 39}, {5, 40}, {5, 40}, {4, 41}, {3, 42}, {3, 42}, {2, 43}, {1, 44}, {1, 44}, {1, 44}, {1, 44},
+                                     {1, 44}, {1, 44}, {2, 43}, {2, 43}, {1, 44}, {1, 44}, {1, 44}, {1, 44}, {1, 44}, {1, 44}, {1, 44}, {1, 44}, {1, 44}, {1, 44}};
+
+        for(int i = 0; i < start_end_indexes.length; i++) {
+            rowStartEnd.put(Integer.toString(i+1), new ArrayList(Arrays.asList(start_end_indexes[i][0], start_end_indexes[i][1])));
+        }
+
+        //(int seat_width, int seat_height, int margin_left, int margin_top, int margin_row, int margin_col, int max_row, int max_col, ArrayList<Integer> floor_row, Map<Integer, ArrayList<Integer>> row_start_end, ArrayList<Integer> aisle_col)
+        seatinfo = new SeatPlanInfo(totalWidth, totalHeight, marginLeft, marginTop, marginRow, marginCol, maxRow, maxCol, floorRow, rowStartEnd, aisleSeat);
+
+        db.collection("SeatPlanInfo").document(documentID).set(seatinfo)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        if(documentSnapshot.exists()) {
-                            totalWidth = documentSnapshot.getLong("totalWidth").intValue();
-                            totalHeight = documentSnapshot.getLong("totalHeight").intValue();
-
-                            marginLeft = documentSnapshot.getLong("marginLeft").intValue();
-                            marginTop = documentSnapshot.getLong("marginTop").intValue();
-
-                            marginRow = documentSnapshot.getLong("marginRow").intValue();
-                            marginCol = documentSnapshot.getLong("marginCol").intValue();
-
-                            maxRow = documentSnapshot.getLong("maxRow").intValue();
-                            maxCol = documentSnapshot.getLong("maxCol").intValue();
-
-                            floorRow = (ArrayList<Integer>) documentSnapshot.get("floorRow");
-
-                            aisleSeat = (ArrayList<Integer>) documentSnapshot.get("aisleSeat");
-
-
-                            Log.d("totalWidth: ", String.valueOf(totalWidth));
-                            Log.d("totalHeight: ", String.valueOf(totalHeight));
-                            Log.d("marginLeft: ", String.valueOf(marginLeft));
-                            Log.d("marginTop: ", String.valueOf(marginTop));
-                            Log.d("marginRow: ", String.valueOf(marginRow));
-                            Log.d("marginCol: ", String.valueOf(marginCol));
-                            Log.d("maxRow: ", String.valueOf(maxRow));
-                            Log.d("maxCol: ", String.valueOf(maxCol));
-
-                            Log.d("floorRow: ", String.valueOf(floorRow));
-                            for(int i = 0; i < floorRow.size(); i++) {
-                                Log.d("floorRow: ", String.valueOf(i)+" = "+String.valueOf(floorRow.get(i)));
-                            }
-                            for(int i = 0; i < aisleSeat.size(); i++) {
-                                Log.d("aisleSeat: ", String.valueOf(i)+" = "+String.valueOf(aisleSeat.get(i)));
-                            }
-
-
-
-                            rowStartEnd = (Map<Integer, ArrayList<Integer>>) documentSnapshot.get("rowStartEnd");
-
-                            for(int i = 0; i < rowStartEnd.size(); i++) {
-                                //Log.d("rowStartEnd: ", String.valueOf(i+1)+" = "+String.valueOf((ArrayList<Integer>)rowStartEnd.get(String.valueOf(i+1))));
-                                Log.d("rowStartEnd: ", (i+1) + " = ["+ rowStartEnd.get(String.valueOf(i+1)).get(0) + ", " + rowStartEnd.get(String.valueOf(i+1)).get(1) + "]");
-                            }
-
-                        }
-                        else {
-                            Toast.makeText(getApplicationContext(), "오류가 발생했습니다. 잠시 후 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
-                        }
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(getApplicationContext(), documentID + " 업로드되었습니다.", Toast.LENGTH_LONG).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.e(TAG, "error occured", e);
-                        Toast.makeText(getApplicationContext(), "오류가 발생했습니다. 잠시 후 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "오류가 발생했습니다. 잠시 후 다시 시도해주세요.", Toast.LENGTH_LONG).show();
                     }
                 });
+
 
 //        btnReadTC = findViewById(R.id.btnReadTC);
 //        btnReadPI = findViewById(R.id.btnReadPI);
