@@ -104,44 +104,6 @@ public class HotfixTestActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "오류가 발생했습니다. 잠시 후 다시 시도해주세요.", Toast.LENGTH_LONG).show();
                     }
                 });
-
-
-//        btnReadTC = findViewById(R.id.btnReadTC);
-//        btnReadPI = findViewById(R.id.btnReadPI);
-//
-//        tvReadTC = findViewById(R.id.tvTermCondition);
-//        tvReadPI = findViewById(R.id.tvPersonalInfo);
-//
-//        tvReadTC.setMovementMethod(new ScrollingMovementMethod());
-//        tvReadPI.setMovementMethod(new ScrollingMovementMethod());
-//
-//        btnReadTC.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                db.collection("TermsDB").document("TermsDocument").get()
-//                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                            @Override
-//                            public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                                String TC = documentSnapshot.getString("TermCondition").replace("\\\\n", "\n");
-//                                tvReadTC.setText(TC);
-//                            }
-//                        });
-//            }
-//        });
-//
-//        btnReadPI.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                db.collection("TermsDB").document("TermsDocument").get()
-//                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                            @Override
-//                            public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                                String PI = documentSnapshot.getString("PersonalInfo").replace("\\\\n", "\n");
-//                                tvReadPI.setText(PI);
-//                            }
-//                        });
-//            }
-//        });
     }
 
     // 뒤로가기 버튼(홈버튼)을 누르면 창이 꺼지는 메소드
