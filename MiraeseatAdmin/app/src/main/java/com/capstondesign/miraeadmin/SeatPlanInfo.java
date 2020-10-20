@@ -18,11 +18,11 @@ public class SeatPlanInfo {
 
     ArrayList<Integer> floor_row;
     Map<String, ArrayList<Integer>> row_start_end;
-    ArrayList<Integer> aisle_col;
+    Map<String, ArrayList<Integer>> aisle_col;
 
     SeatPlanInfo() { }
 
-    public SeatPlanInfo(int seat_width, int seat_height, int margin_left, int margin_top, int margin_row, int margin_col, int max_row, int max_col, ArrayList<Integer> floor_row, Map<String, ArrayList<Integer>> row_start_end, ArrayList<Integer> aisle_col) {
+    public SeatPlanInfo(int seat_width, int seat_height, int margin_left, int margin_top, int margin_row, int margin_col, int max_row, int max_col, ArrayList<Integer> floor_row, Map<String, ArrayList<Integer>> row_start_end, Map<String, ArrayList<Integer>> aisle_col) {
         this.seat_width = seat_width;
         this.seat_height = seat_height;
         this.margin_left = margin_left;
@@ -76,7 +76,7 @@ public class SeatPlanInfo {
         return row_start_end;
     }
 
-    public ArrayList<Integer> getAisle_col() {
+    public Map<String, ArrayList<Integer>> getAisle_col() {
         return aisle_col;
     }
 }

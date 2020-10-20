@@ -35,6 +35,7 @@ public class HotfixTestActivity extends AppCompatActivity {
     String documentID;
     SeatPlanInfo seatinfo;
 
+    // 데이터타입 변경 필요 시 SeatPlanInfo.java 파일도 같이 수정 바랍니다.
     int totalWidth;
     int totalHeight;
     int marginLeft;
@@ -46,7 +47,7 @@ public class HotfixTestActivity extends AppCompatActivity {
 
     ArrayList<Integer> floorRow;
     Map<String, ArrayList<Integer>> rowStartEnd;
-    ArrayList<Integer> aisleSeat;
+    Map<String, ArrayList<Integer>> aisleSeat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,7 @@ public class HotfixTestActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
+        // 공연장 코드 (ex. FC000011-01)
         documentID = "00TESTDOCUMENT";
 
         totalWidth = 0;
@@ -77,7 +79,6 @@ public class HotfixTestActivity extends AppCompatActivity {
         maxCol = 0;
 
         floorRow = new ArrayList<Integer>(Arrays.asList(0, 20, 32));
-        aisleSeat = new ArrayList<Integer>(Arrays.asList(14, 30));
 
         rowStartEnd = new HashMap<>();
 
@@ -87,6 +88,17 @@ public class HotfixTestActivity extends AppCompatActivity {
         for(int i = 0; i < start_end_indexes.length; i++) {
             rowStartEnd.put(Integer.toString(i+1), new ArrayList(Arrays.asList(start_end_indexes[i][0], start_end_indexes[i][1])));
         }
+
+        aisleSeat = new HashMap<>();
+
+        // 임시 데이터 아무거나 적어놨으니 적당히 바꿔쓰십숑
+        int[][] aisle_seat_indexes = {{15, 30}, {11, 34}, {10, 35}, {9, 36}, {8, 37}, {7, 38}, {7, 38}, {6, 39}, {5, 40}, {5, 40}, {4, 41}, {3, 42}, {3, 42}, {2, 43}, {1, 44}, {1, 44}, {1, 44}, {1, 44},
+                {1, 44}, {1, 44}, {2, 43}, {2, 43}, {1, 44}, {1, 44}, {1, 44}, {1, 44}, {1, 44}, {1, 44}, {1, 44}, {1, 44}, {1, 44}, {1, 44}};
+
+        for(int i = 0; i < aisle_seat_indexes.length; i++) {
+            aisleSeat.put(Integer.toString(i+1), new ArrayList(Arrays.asList(aisle_seat_indexes[i][0], aisle_seat_indexes[i][1])));
+        }
+
 
         //(int seat_width, int seat_height, int margin_left, int margin_top, int margin_row, int margin_col, int max_row, int max_col, ArrayList<Integer> floor_row, Map<Integer, ArrayList<Integer>> row_start_end, ArrayList<Integer> aisle_col)
         seatinfo = new SeatPlanInfo(totalWidth, totalHeight, marginLeft, marginTop, marginRow, marginCol, maxRow, maxCol, floorRow, rowStartEnd, aisleSeat);
