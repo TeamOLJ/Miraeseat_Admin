@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // Firebase 인증 변수
     private FirebaseAuth loginAuth;
-    private String adminEmail = "***REMOVED***";
+    private String adminEmail = "***ADMIN_EMAIL***";
 
     TextInputLayout inputLayoutEmail;
     TextInputLayout inputLayoutPwd;
